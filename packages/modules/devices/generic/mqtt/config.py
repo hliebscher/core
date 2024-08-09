@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+from ..vendor import vendor_descriptor
+
+
 class MqttConfiguration:
     def __init__(self):
         pass
@@ -12,6 +15,7 @@ class Mqtt:
                  configuration: MqttConfiguration = None) -> None:
         self.name = name
         self.type = type
+        self.vendor = vendor_descriptor.configuration_factory().type
         self.id = id
         self.configuration = configuration or MqttConfiguration()
 
