@@ -37,7 +37,7 @@ class AdditionalCurrent:
                         cp.data.set.current, available_for_cp, cp.data.set.target_current)
                     self._set_loadmangement_message(current, limit, cp, counter)
                     common.set_current_counterdiff(
-                        current - cp.data.control_parameter.min_current,
+                        cp.data.control_parameter.min_current,
                         current,
                         cp)
                     preferenced_chargepoints.pop(0)
@@ -52,9 +52,9 @@ class AdditionalCurrent:
                                    chargepoint: Chargepoint,
                                    counter: Counter) -> None:
         # Strom muss an diesem Zähler geändert werden
-        log.debug(f"current {current} target {chargepoint.data.set.target_current} set current "
-                  f"{chargepoint.data.set.current} required currents "
-                  f"{chargepoint.data.control_parameter.required_currents}")
+        log.debug(
+            f"current {current} target {chargepoint.data.set.target_current} set current {chargepoint.data.set.current}"
+            f" required currents {chargepoint.data.control_parameter.required_currents}")
         if (current != max(chargepoint.data.set.target_current, chargepoint.data.set.current or 0) and
                 # Strom erreicht nicht die vorgegebene Stromstärke
                 round(current, 2) != round(max(
